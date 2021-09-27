@@ -133,7 +133,7 @@ export class AddConnections extends Component {
           </div>
            <div className="mb-3  row justify-content-center">
           
-          <Switch  color="primary" name="status"  value={status} onChange={this.changeHandler1}/>
+          <Switch  color="primary" name="status" checked={status} value={status} onChange={this.changeHandler1}/>
           <label className="mt-2 ml-2 row justify-content-center" >Is Active</label>
           </div>
          
