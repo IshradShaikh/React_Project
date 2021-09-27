@@ -114,7 +114,8 @@ export class Services extends Component {
 
         this.setState(
             {
-                username: ""
+                username: "",
+                connName:"Select Connection"
             })
 
     }
@@ -176,11 +177,11 @@ export class Services extends Component {
                                 <div className="mb-3 row justify-content-center">
                                     <label for="inputSelect" className="col-form-label col-sm-2">Connection</label>
                                     
-                                        <select  id="inputSelect" className="form-control form-select col-sm-4" name="connName" value={users.connName} onChange={this.changeHandler} >
+                                        <select  id="inputSelect" className="form-control form-select col-sm-4" name="connName" value={connName} onChange={this.changeHandler} >
 
                                             <option selected value='none'>Select Connection</option>
                                             {users.map((user) => (
-                                                <option value={user.id} >{user.connName}</option>
+                                                <option value={user.connName} >{user.connName}</option>
                                             ))}
                                         </select>
 
