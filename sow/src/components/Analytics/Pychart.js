@@ -1,20 +1,30 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
-import Table from "./SOWComTable"
+// Table
+import Table from "./SOWComTable";
+
+// API
+import { CustomerDataSet } from "./CustomerDataSet";
 
 function Pychart() {
+  const [selectedGraphElement, setGraphElement] = React.useState("");
+  const [elementsSelected, setElementsSelected] = React.useState("");
+  const [selectedDataSets, setSelectedDataSets] = React.useState("");
+  const [file, setFile] = React.useState(null);
 
-  const [selectedGraphElement,setGraphElement] = React.useState('')
-  const [elementsSelected, setElementsSelected] = React.useState('')
-  const [selectedDataSets, setSelectedDataSets] = React.useState('')
+  const [companyData, setCompanyData] = React.useState([]);
 
   const data = {
-    labels: ["Active", "Warning", "Danger"],
+    labels: ["More than a month", "Less than a month", "Less than 15 days"],
     datasets: [
       {
-        label: "SOW",
-        data: [30, 12, 5],
+        label: "SOW tracker",
+        data: [
+          CustomerDataSet[0].length,
+          CustomerDataSet[1].length,
+          CustomerDataSet[2].length,
+        ],
         backgroundColor: [
           "rgb(10,132,10,0.5)",
           "rgb(255,165,0,0.5)",
@@ -32,33 +42,58 @@ function Pychart() {
 
   const options = {
     responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "right",
+      },
+    },
   };
 
-  const getElementAtEvent = element => {
-    if(!element.length) return;
-    setGraphElement(element[0])
-  }
+  React.useEffect(() => {
+    setCompanyData(CustomerDataSet[selectedGraphElement.index]);
+  }, [selectedGraphElement]);
 
-  const getDatasetAtEvent = datasets => {
-    if(!datasets.length) return;
-    const datasetIndex = datasets[0].datasetIndex 
-    setSelectedDataSets(data.datasets[datasetIndex].label)
-  }
+  const getElementAtEvent = (element) => {
+    if (!element.length) return;
+    setGraphElement(element[0]);
+  };
 
-  const getElementsAtEvent = elements => {
+  const getDatasetAtEvent = (datasets) => {
+    if (!datasets.length) return;
+    const datasetIndex = datasets[0].datasetIndex;
+    setSelectedDataSets(data.datasets[datasetIndex].label);
+  };
+
+  const getElementsAtEvent = (elements) => {
     if (!elements.length) return;
     setElementsSelected(elements.length);
-  }
+  };
 
   return (
     <div>
-      <Pie data={data} options={options} redraw={false}
-      getElementAtEvent={getElementAtEvent} getDatasetAtEvent={getDatasetAtEvent} getElementsAtEvent={getElementsAtEvent} />
+      <div style={{ float: "left" }}>
+        <Pie
+          data={data}
+          options={options}
+          getElementAtEvent={getElementAtEvent}
+          getDatasetAtEvent={getDatasetAtEvent}
+          getElementsAtEvent={getElementsAtEvent}
+          width={500}
+          height={500}
+        />{" "}
+      </div>
 
-      <h5> {selectedGraphElement && `selectedGraphElement : ${selectedGraphElement.index}`} </h5>
-
-      { selectedGraphElement && <Table/>}
-
+      <div style={{ float: "right" }}>
+        {(selectedGraphElement.index == "0" && "More than a month") ||
+          (selectedGraphElement.index == "1" && "Less than a month") ||
+          (selectedGraphElement.index == "2" && "Less than 15 days") ||
+          ""}{" "}
+        {selectedGraphElement && " - "}{" "}
+        {selectedGraphElement &&
+          CustomerDataSet[selectedGraphElement.index].length}
+        {selectedGraphElement && <Table Company={companyData} />}{" "}
+      </div>
     </div>
   );
 }
