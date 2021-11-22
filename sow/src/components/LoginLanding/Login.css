@@ -1,0 +1,72 @@
+body {
+    /* background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(0,212,255,1) 0%, rgba(9,9,121,1) 100%); */
+    /* background: #1d8fbd; */
+    /* background: #fff; */
+  }
+  
+/* .login{
+  margin-top:100px;
+} */
+
+  .container {
+    display:flex !important;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+    max-width: 500px;
+    width: 50%;
+    margin: auto;
+    margin-top:-100px
+  }
+
+  .LandingCon{
+    padding: 5px;
+    display : block;
+    border-radius: 30px;
+    flex:1;
+    flex-direction: row;
+    background-color: #ffffff;
+  }
+
+  .LandingCard{
+    flex:1;
+    flex-direction: row;
+    transition: 0.5s;
+    border-radius: 10px;
+    display: flex;
+    border-radius: 50px;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    justify-self: center;
+    margin:10px;
+    padding:20px;
+  }
+  
+  .container > form {
+    margin-top:300px;
+    width: 70%;
+    border:1px solid #dfdfdf;
+    padding:20px;
+    border-radius: 5px;
+    /* background: #fff; */
+    background: #fff;
+    /* background: rgb(0, 153, 255); */
+    /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgb(0, 153, 255) 0%, rgba(9,9,121,1) 100%) */
+  }
+
+  pre {
+    width: 70%;
+    color: #fff;
+    font-size: larger;
+  }
+  
+  /* button {
+    background: #0563b4 !important;
+  } */
+
+  /* p {
+    color:red
+  } */
